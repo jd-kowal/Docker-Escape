@@ -68,7 +68,7 @@ Pobierz obraz dockera z repozytorium:
 ```
 docker pull ubuntu
 ```
-![image1](https://github.com/norka02/Docker-Escape/assets/94318576/daff8699-e65e-4b32-a762-a6ba73781618)
+![image1](https://github.com/norka02/Docker-Escape/assets/94318576/daff8699-e65e-4b32-a762-a6ba73781618) <br />
 Po pobraniu sprawdź czy obraz pobrał się poprawnie za pomocą:
 ```
 docker images
@@ -79,7 +79,7 @@ docker run --rm -it --name kontener-adama --hostname ubuntu-by-adam --privileged
 ```
 Teraz jesteś wewnątrz swojego kontenera, którego przed chwilą stworzyłeś. Możesz to sprawdzić za pomocą komend ``whoami`` oraz ``hostname``. <br />
 Przykładowy ScreenShot znajduje się poniżej.
-<< ScreenShot >>
+![image2](https://github.com/norka02/Docker-Escape/assets/94318576/7a2266e8-ce4f-44dd-9a3d-e93341a36755) <br />
 Jak możesz zauważyć tworząc własny kontener masz w nim uprawnienia root-a. <br />
 Następnie stwórz w swoim kontenerze z obrazem ubuntu katalog: <br />
 ```bash
@@ -90,7 +90,7 @@ Oraz podmontuj odpowiednią partycję dysku do tego katalogu np. /dev/sdc: <br /
 mount /dev/sdc /mnt/share
 ```
 Domyślnie polecenie mount nadaje ci prawa do zapisu i odczytu, ale jeśli wystąpiłby przykładowo taki komunikat: <br />
-<img> <br />
+![image3](https://github.com/norka02/Docker-Escape/assets/94318576/d1cd3e07-3672-4086-bb40-2b86b14bceb5) <br />
 Zmień partycję dysku. Listę partycji możesz uzyskać za pomocą polecenia: <br />
 ```bash
 lsblk
@@ -115,10 +115,10 @@ vim /mnt/share/etc/passwd
 ```
 Trzeba usunąć część wskazującą na obecność hasła root-a w pliku shadow {**PE**}. <br />
 
-<<<<<<<<SSx2>>>>>>>>
+![image5](https://github.com/norka02/Docker-Escape/assets/94318576/8bf49b45-925b-4c12-b7a5-9a6a5cbf5b4b)
+![image4](https://github.com/norka02/Docker-Escape/assets/94318576/f38a79ad-7e7a-4e0b-a404-cfce4b5aaea8)
+<br />
 
-
-<< ScreenShot >>
 Wyjdź z kontenera za pomocą ``exit``. <br />
 Zmień użytkownika na root-a {**PE**}:
 ```
