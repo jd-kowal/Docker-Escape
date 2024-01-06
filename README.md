@@ -26,16 +26,17 @@ We present security issues in Docker. We show vulnerabilities of this software a
 Aby rozpocząć wykonywanie zadań sklonujcie repozytorium. <br />
 Będziemy używać Dockera (kontener w kontenerze). Całość jest przygotowana w docker.file. <br />
 Następnie wykonaj poniższe komendy. <br />
-Build:<br />
+
+Build:
 ```bash: 
 docker build -t ubuntu-dind
 ```
-<br />
-Run:<br />
+
+Run:
 ```bash: 
 docker run -d -p 5000:5000 --privileged --hostname ubuntu-dind --name ubuntu-dind ubuntu-dind
 ```
-<br />
+
 Enter:<br />
 ```bash: 
 docker exec -itu adam ubuntu-dind bash
