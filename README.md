@@ -2,7 +2,7 @@
 This project shows vulnerability how to escape from Docker container in which web application is running. <br />
 
 ## About
-This project is made for academic purposes during one of our courses at the AGH University of Krakow. <br />
+This project was made for academic purposes during one of our courses at the AGH University of Krakow. <br />
 We present security issues in Docker. We show vulnerabilities of this software and best practices related to them. Below we also include case-studies showing how to get into the server from the user level of a web application, how to escape from this container and the possibilities that open up to us after such an escape.<br />
 
   
@@ -14,12 +14,6 @@ We present security issues in Docker. We show vulnerabilities of this software a
 *** 
 
 # Tasks
-* [Task 0](#Task-0)
-* [Task 1](#Task-1)
-* [Task 2](#Task-2)
-* [Task 3](#Task-3)
-* [Task 4](#Task-4)
-
 
 
 ## Task 0 - Przygotowanie środowiska
@@ -42,7 +36,7 @@ Enter:<br />
 docker exec -itu adam ubuntu-dind bash
 ```
 
-**TIP** - w przypadku problemów -> zresetuj kontener 
+**TIP** - w przypadku problemów -> zrestartuj kontener 
 
 ## Task 1 - Dostęp do serwera z perspektywy użytkownika aplikacji webowej
 Na kontenerze jest uruchomiona aplikacja webowa. Znając jej podatność omówioną podczas prezentacji spróbuj za pomocą preparacji url-a wykonać podstawowy pentesting (np. podawany podczas prezentacji przykład wyrażenia 7*7). <br />
