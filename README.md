@@ -68,7 +68,7 @@ Pobierz obraz dockera z repozytorium:
 ```
 docker pull ubuntu
 ```
-<< SS >>
+![image1](https://github.com/norka02/Docker-Escape/assets/94318576/daff8699-e65e-4b32-a762-a6ba73781618)
 Po pobraniu sprawdź czy obraz pobrał się poprawnie za pomocą:
 ```
 docker images
