@@ -43,7 +43,7 @@ docker exec -itu adam ubuntu-dind bash
 ```
 <br />
 <br />
-**TIP** - w przypadku problemów -> zresetuj kontener <br />
+**TIP** - w przypadku problemów -> zresetuj kontener 
 
 ## Task 1 - Dostęp do serwera z perspektywy użytkownika aplikacji webowej
 Na kontenerze jest uruchomiona aplikacja webowa. Znając jej podatność omówioną podczas prezentacji spróbuj za pomocą preparacji url-a wykonać podstawowy pentesting (np. podawany podczas prezentacji przykład wyrażenia 7*7). <br />
