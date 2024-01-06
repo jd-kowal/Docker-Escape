@@ -3,10 +3,12 @@ FROM ubuntu:latest
 
 RUN apt-get update && \
     apt-get install -y apt-transport-https ca-certificates curl software-properties-common && \
+    mkdir -p /etc/secret && \
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
+    echo 'CTF{Jestem słaby w hakowanie: <Twoje_Imie_i_Nazwisko>}' > /etc/secret/secret.txt && \
     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
-    apt-get update && \
-    apt-get install -y docker-ce python3 python3-pip
+    apt-get update && chmod 700 /etc/secret/secret.txt && apt-get install -y docker-ce python3 python3-pip
+
 
 
 
