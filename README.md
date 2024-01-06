@@ -129,6 +129,10 @@ su root
 
 ## Task 3 - Mini-CTF
 Mając uprawnienia root-a możesz poruszać się bezproblemowo po systemie. Znajdź katalog, który nie powinien znajdować się w systemie/wyróżnia się spośród pozostałych. W nim znajduje się plik z flagą. Zmodyfikuj znaleziony plik dodając swoje imię i nazwisko. <br />
+Flaga znajduje się w pliku tekstowym i jest oznaczona w następujący sposób:
+```
+CTF{<flaga>}
+```
 
 **Odpowiedź** - wyślij widoczną zmodyfikowaną flagę wraz z dopisanym unikalnym tekstem wymienionym wyżej oraz ścieżkę do katalogu, w którym znajduje się znaleziona flaga. 
 
