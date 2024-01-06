@@ -44,7 +44,7 @@ Następnie ... <br />
 ```
 tutaj ten długi wąż
 ```
-<br />
+
 **Odpowiedź** - wyślij ss, który pokaże wszystkie pliki z aktualnego katalogu (wpisz tą komendę w popen()) 
 
 ## Task 2 - Docker Escape & Privilege Escalation
@@ -60,12 +60,11 @@ Za pomocą edytora tekstowego otwieramy plik ``/etc/shadow``. <br />
 
 
 
-<br />
 **Odpowiedź** - wyślij ss potwierdzającego twoje uprawnienia root-a. 
 
 ## Task 3 - Mini-CTF
 Mając uprawnienia root-a możesz poruszać się bezproblemowo po systemie. Znajdź katalog, który nie powinien znajdować się w systemie/wyróżnia się spośród pozostałych. W nim znajdować plik z flagą. Zmodyfikuj znaleziony plik dodając swoje imię i nazwisko. <br />
-<br />
+
 **Odpowiedź** - wyślij widoczną zmodyfikowaną flagę wraz z dopisanym unikalnym tekstem wymienionym wyżej oraz ścieżkę do katalogu, w którym znajduje się znaleziona flaga. 
 
 ## Task 4 - Tworzenie Bezpiecznego Kontenera
