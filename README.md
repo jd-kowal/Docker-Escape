@@ -73,11 +73,14 @@ Po pobraniu sprawdź czy obraz pobrał się poprawnie za pomocą:
 ```
 docker images
 ```
-Poniżej zostały przedstawione dwie przykładowe możliwości stworzenia kontenera z podatnością:
-1. ```
+Poniżej zostały przedstawione dwie przykładowe możliwości stworzenia kontenera z podatnością: <br />
+
+1.
+```
 docker run --rm -it --name kontener-adama --hostname ubuntu-by-adam --privileged ubuntu:18.04 bash
 ```
-2. ```
+2.
+```
 docker run -it -v /:/host/ ubuntu:18.04 chroot /host/ bash
 ```
 
