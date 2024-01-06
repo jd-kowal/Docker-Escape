@@ -41,12 +41,25 @@ docker exec -itu adam ubuntu-dind bash
 ## Task 1 - Dostęp do serwera z perspektywy użytkownika aplikacji webowej
 Na kontenerze jest uruchomiona aplikacja webowa. Znając jej podatność omówioną podczas prezentacji spróbuj za pomocą preparacji url-a wykonać podstawowy pentesting (np. podawany podczas prezentacji przykład wyrażenia 7*7). <br />
 Następnie ... <br />
+```
+tutaj ten długi wąż
+```
 <br />
-**Odpowiedź** - <br />
+**Odpowiedź** - wyślij ss, który pokaże wszystkie pliki z aktualnego katalogu (wpisz tą komendę w popen()) <br />
 
 ## Task 2 - Docker Escape & Privilege Escalation
 **TIP** - proponujemy przejście z wykonywaniem zadań do terminala. <br />
 Ucieczkę z kontenera umożliwia nam złe skonfigurowanie kontenera. <br />
+
+Będąc w kontenerze musimy wywołać komendę:
+```
+    docker run -it -v /:/host/ ubuntu:18.04 chroot /host/ bash
+```
+Musimy zainstalować w kontenerze wybrany przez siebie edytor tekstowy (np. vim, nano). <br />
+Za pomocą edytora tekstowego otwieramy plik ``/etc/shadow``. <br />
+
+
+
 <br />
 **Odpowiedź** - wyślij ss potwierdzającego twoje uprawnienia root-a. <br />
 
