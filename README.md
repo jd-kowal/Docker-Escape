@@ -24,7 +24,7 @@ Następnie wykonaj poniższe komendy. <br />
 
 Build:
 ```bash: 
-docker build -t ubuntu-dind
+docker build -t ubuntu-dind .
 ```
 
 Run:
@@ -53,7 +53,7 @@ Najpierw jednak musimy znaleźć **LICZBĘ**. Aby ją odszukać użyj programu `
 **Odpowiedź** - wyślij ss, który wylistuje wszystkie pliki i katalogi z aktualnego katalogu (wpisz tą komendę w popen()) 
 
 ## Task 2 - Docker Escape & Privilege Escalation
-**TIP** - proponujemy przejście z wykonywaniem zadań do terminala. <br />
+**TIP** - proponujemy przejście z wykonywaniem zadań do terminala. Otwórz go w katalogu projektu.<br />
 Ucieczkę z kontenera umożliwia nam złe skonfigurowanie kontenera. <br />
 
 Spróbuj zmienić użytkownika na root-a (nie powinieneś mieć takiej możliwości - powinieneś być na adamie) {**PE**}: 
@@ -66,17 +66,29 @@ docker images
 ```
 Pobierz obraz dockera z repozytorium:
 ```
-docker pull ubuntu
+docker pull ubuntu:18.04
 ```
-![image1](https://github.com/norka02/Docker-Escape/assets/94318576/daff8699-e65e-4b32-a762-a6ba73781618) <br />
+![image](https://github.com/norka02/Docker-Escape/assets/121463460/e5f1fbfc-c4f9-4543-a6b0-f802d55b7039) <br />
 Po pobraniu sprawdź czy obraz pobrał się poprawnie za pomocą:
 ```
 docker images
 ```
+Poniżej zostały przedstawione dwie przykładowe możliwości stworzenia kontenera z podatnością:
+1. ```
+docker run --rm -it --name kontener-adama --hostname ubuntu-by-adam --privileged ubuntu:18.04 bash
+```
+2. ```
+docker run -it -v /:/host/ ubuntu:18.04 chroot /host/ bash
+```
+
+Pierwsza opcja pozwoli nam stworzyć kontener z flagą ``--priviliged``, dzięki której będzie możliwe poprzez zmontowanie partycji wyjście do systemu hosta. <br />
+W zależności od solidności zabezpieczeń serwera będzie można edytować pliki na maszynie hosta lub tylko je czytać. <br />
+Druga opcja daje nam z regły dużo większe możliwości jako osobie która uruchamia kontener, ale także dużo większe możliwości dla potencjalnego atakującego. <br />
+W skrócie montuje ona volumen z katalogu root hosta do katalogu /host w kontenerze dzięki czemu możemy przykładowo przesyłać pliki między hostem a kontenerem. <br />
+
+Zacznijmy od scenariusza pierwszego. <br />
 Będąc na użytkowniku **adam** uruchom kontener {**DE**}:
-```
-docker run --rm -it --name kontener-adama --hostname ubuntu-by-adam --privileged ubuntu bash
-```
+
 Teraz jesteś wewnątrz swojego kontenera, którego przed chwilą stworzyłeś. Możesz to sprawdzić za pomocą komend ``whoami`` oraz ``hostname``. <br />
 Przykładowy ScreenShot znajduje się poniżej.
 ![image2](https://github.com/norka02/Docker-Escape/assets/94318576/7a2266e8-ce4f-44dd-9a3d-e93341a36755) <br />
@@ -95,35 +107,47 @@ Zmień partycję dysku. Listę partycji możesz uzyskać za pomocą polecenia: <
 ```bash
 lsblk
 ```
-Dzięki podmontowaniu partycji jesteśmy w stanie uzyskać dostep do struktury katalogów hosta. Spróbuj przedostać się do zewnętrznego systemu plików, odnajdź pliki ``/etc/shadow`` oraz ``/etc/passwd`` i usuń w nich elementy odpowiadające za uwierzytelnienie użytkownika root. <br />
-Teraz wykonujemy poniższą komendę:
-```bash
-apt update
-```
+Dzięki podmontowaniu partycji jesteśmy w stanie uzyskać dostep do struktury katalogów hosta. 
 
-Musimy zainstalować w kontenerze wybrany przez siebie edytor tekstowy (np. vim, nano). 
-```bash
-apt install vim
-```
 Sprawdź czy masz dostęp do struktury katalogów hosta:
 ```bash
  ls -l /mnt/share 
 ```
-Za pomocą edytora tekstowego otwieramy plik ``/etc/shadow`` oraz ``/etc/passwd``. 
-```bash
-vim /mnt/share/etc/passwd
-```
-Trzeba usunąć część wskazującą na obecność hasła root-a w pliku shadow {**PE**}. <br />
+Poszperaj trochę po systemie. Może znajdziesz coś ciekawego ;). <br />
+PS: Zobacz jak niewiele trzeba do wycieku danych. <br />
+
+Wyjdź z kontenera za pomocą ``exit``. <br />
+
+
+Teraz przejdźmy do scenariusza drugiego. Uruchom kontener za pomocą wcześniej podanej komendy. Następnie wylistuj strukturę katalogów w której obecnie się znajdujesz. <br />
+Spróbuj przedostać się do zewnętrznego systemu plików, odnajdź pliki ``/etc/shadow`` oraz ``/etc/passwd`` i usuń w nich elementy odpowiadające za uwierzytelnienie użytkownika root. <br />
+
+  *Jeżeli nie masz zainstalowengo żadnego edytora tekstowego wykonaj poniższe komendy:*
+  ```bash
+  apt update
+  ```
+  
+  *Instalacja w kontenerze wybranego przez siebie edytora tekstowego (np. vim, nano).* 
+  ```bash
+  apt install vim
+  ```
+
+Za pomocą edytora tekstowego otwórz plik ``/etc/shadow`` oraz ``/etc/passwd``.  <br />
+
+
+Trzeba usunąć część wskazującą na obecność hasła root-a w pliku shadow {**PE**}. Zrób tak samo z plikiem passwd. <br />
 
 ![image5](https://github.com/norka02/Docker-Escape/assets/94318576/8bf49b45-925b-4c12-b7a5-9a6a5cbf5b4b)
 ![image4](https://github.com/norka02/Docker-Escape/assets/94318576/f38a79ad-7e7a-4e0b-a404-cfce4b5aaea8)
 <br />
 
 Wyjdź z kontenera za pomocą ``exit``. <br />
+
 Zmień użytkownika na root-a {**PE**}:
 ```
 su root
 ```
+Brawo właśnie przejąłeś konto roota! <br />
 
 **Odpowiedź** - wyślij ss potwierdzającego twoje uprawnienia root-a. 
 
