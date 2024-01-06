@@ -41,8 +41,7 @@ Enter:<br />
 ```bash: 
 docker exec -itu adam ubuntu-dind bash
 ```
-<br />
-<br />
+
 **TIP** - w przypadku problemów -> zresetuj kontener 
 
 ## Task 1 - Dostęp do serwera z perspektywy użytkownika aplikacji webowej
