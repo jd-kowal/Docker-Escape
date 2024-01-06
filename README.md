@@ -81,7 +81,23 @@ Teraz jesteś wewnątrz swojego kontenera, którego przed chwilą stworzyłeś. 
 Przykładowy ScreenShot znajduje się poniżej.
 << ScreenShot >>
 Jak możesz zauważyć tworząc własny kontener masz w nim uprawnienia root-a. <br />
-<><><><><><><>
+Następnie stwórz w swoim kontenerze z obrazem ubuntu katalog: <br />
+```bash
+mkdir -p /mnt/share
+```
+Oraz podmontuj odpowiednią partycję dysku do tego katalogu np. /dev/sdc: <br />
+```bash
+mount /dev/sdc /mnt/share
+```
+Domyślnie polecenie mount nadaje ci prawa do zapisu i odczytu, ale jeśli wystąpiłby przykładowo taki komunikat: <br />
+<img> <br />
+Zmień partycję dysku. Listę partycji możesz uzyskać za pomocą polecenia: <br />
+```bash
+lsblk
+```
+Dzięki podmontowaniu partycji jesteśmy w stanie uzyskać dostep do struktury katalogów hosta. Spróbuj przedostać się do zewnętrznego <br />
+systemu plików, odnajdź pliki ``/etc/shadow`` oraz ``/etc/passwd`` i usuń w nich elementy odpowiadające za uwierzytelnienie użytkownika root <br />
+
 Musimy zainstalować w kontenerze wybrany przez siebie edytor tekstowy (np. vim, nano). <br />
 Za pomocą edytora tekstowego otwieramy plik ``/etc/shadow``. <br />
 Trzeba usunąć część wskazującą na obecność hasła root-a w pliku shadow {**PE**}.
