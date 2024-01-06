@@ -95,12 +95,29 @@ Zmień partycję dysku. Listę partycji możesz uzyskać za pomocą polecenia: <
 ```bash
 lsblk
 ```
-Dzięki podmontowaniu partycji jesteśmy w stanie uzyskać dostep do struktury katalogów hosta. Spróbuj przedostać się do zewnętrznego <br />
-systemu plików, odnajdź pliki ``/etc/shadow`` oraz ``/etc/passwd`` i usuń w nich elementy odpowiadające za uwierzytelnienie użytkownika root <br />
+Dzięki podmontowaniu partycji jesteśmy w stanie uzyskać dostep do struktury katalogów hosta. Spróbuj przedostać się do zewnętrznego systemu plików, odnajdź pliki ``/etc/shadow`` oraz ``/etc/passwd`` i usuń w nich elementy odpowiadające za uwierzytelnienie użytkownika root. <br />
+Teraz wykonujemy poniższą komendę:
+```bash
+apt update
+```
 
-Musimy zainstalować w kontenerze wybrany przez siebie edytor tekstowy (np. vim, nano). <br />
-Za pomocą edytora tekstowego otwieramy plik ``/etc/shadow``. <br />
-Trzeba usunąć część wskazującą na obecność hasła root-a w pliku shadow {**PE**}.
+Musimy zainstalować w kontenerze wybrany przez siebie edytor tekstowy (np. vim, nano). 
+```bash
+apt install vim
+```
+Sprawdź czy masz dostęp do struktury katalogów hosta:
+```bash
+ ls -l /mnt/share 
+```
+Za pomocą edytora tekstowego otwieramy plik ``/etc/shadow`` oraz ``/etc/passwd``. 
+```bash
+vim /mnt/share/etc/passwd
+```
+Trzeba usunąć część wskazującą na obecność hasła root-a w pliku shadow {**PE**}. <br />
+
+<<<<<<<<SSx2>>>>>>>>
+
+
 << ScreenShot >>
 Wyjdź z kontenera za pomocą ``exit``. <br />
 Zmień użytkownika na root-a {**PE**}:
