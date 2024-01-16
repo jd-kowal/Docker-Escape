@@ -7,7 +7,7 @@ We present security issues in Docker. We show vulnerabilities of this software a
 <br />
   
 ## *Authors:*
-- [Huber Mąka](https://github.com/norka02)
+- [Hubert Mąka](https://github.com/norka02)
 - [Karol Makara](https://github.com/KarolMakara) 
 - [Jakub Kowal](https://github.com/jd-kowal)
 
